@@ -81,6 +81,7 @@ module Bot
     rescue => e
     # rescue Capybara::ElementNotFound => e
       logger.info "FAILED: #{self.class.inspect}"
+
       screenshot_and_save_page rescue nil
       logger.debug '--- Exception'
       logger.debug e.class
@@ -99,7 +100,7 @@ module Bot
 
     def wait_until(selector, retries=MAX_RETRIES, **options)
       logger.debug "   * wait_until #{selector}"
-      while retries > 0 && !has_selector?(selector, options)
+      while retries > 0 && !has_selector?(selector, **options)
         timeout
         retries -= 1
       end
@@ -107,7 +108,7 @@ module Bot
 
     def wait_while(selector, retries=MAX_RETRIES, **options)
       logger.debug "   * wait_while #{selector}"
-      while retries > 0 && has_selector?(selector, options)
+      while retries > 0 && has_selector?(selector, **options)
         timeout
         retries -= 1
       end

@@ -97,10 +97,8 @@ module Bot
 
     def choose_building(titles)
       titles = [titles] unless titles.is_a?(Array)
-      
       logger.debug "   * choose_building #{titles.join(', ')}"
       available_buildings = all('#menu-section-general-container .menu-list-element.menu-list-element-basic.clickable.with-icon-left.with-icon-right')
-      
       available_buildings.each do |building|
         building_name = building.first('.menu-list-element-basic--title').text()
         next unless titles.include?(building_name)
@@ -183,7 +181,7 @@ module Bot
 
         if buildings.empty?
           logger.info '   * There are no buildings to upgrade'
-          return 
+          return
         end
 
         # If there are no buildings to build, build all available
@@ -266,7 +264,7 @@ module Bot
       end
 
       return unless choose_tavern
-      
+
       within('#menu-section-drill-container .menu--content-section > div:last-child') do
         buttons = all('button:not(.disabled)')
         buttons.each do |button|
@@ -278,7 +276,7 @@ module Bot
       end
       timeout(3)
     end
-  
+
     def choose_mass_functions
       choose_bottom_menu_item("Mass functions")
     end
@@ -375,7 +373,7 @@ module Bot
         choose_menu_drill_item(options[:unit])
       end
 
-      # find all buttons to itterate over them 
+      # find all buttons to itterate over them
       buttons = all('#menu-section-drill-container .menu--content-section > div.menu-list-element-basic')
       for button in buttons
         # select_all_castles
@@ -407,7 +405,7 @@ module Bot
           next
         end
       end
-      
+
       button = find('#menu-section-drill-container .menu--content-section > .menu-list-element-basic.clickable.last')
       barter_silver = button.find('.menu-list-element-basic--value').text.to_i rescue 0
 
@@ -436,7 +434,7 @@ module Bot
           "#game-pop-up-layer .event-pop-up-button.Back"
         ]
       else
-        logger.debug '   * try to accept' 
+        logger.debug '   * try to accept'
       end
 
       selectors.each do |selector|
@@ -463,8 +461,8 @@ module Bot
         upgrade_section = first('.widget--upgrades-in-progress--list')
       end
 
-      available_buildings = all('.menu-list-element.menu-list-element-basic.clickable.with-icon-left.with-icon-right:not(.disabled)') 
-      
+      available_buildings = all('.menu-list-element.menu-list-element-basic.clickable.with-icon-left.with-icon-right:not(.disabled)')
+
       available_buildings.each do |building|
         # Skip building when there are no upgrades
         next unless building.has_selector?('button')
@@ -475,7 +473,7 @@ module Bot
           # Skip building when in build list to finish or speedup
           is_building_list = build_button.has_selector?('.icon-build-finish') || build_button.has_selector?('.icon-build-speedup')
           next if is_building_list
-        end 
+        end
 
         # Skip building when there are not enough resources
         next if build_button['class'].include?('disabled')
@@ -498,10 +496,10 @@ module Bot
 
         # Add to building list
         buildings[building_name] = {button: build_button, level: building_level, name: building_name, description: building_description}
-      end      
+      end
 
       logger.debug "   * found #{buildings.size} possible buildings"
-      
+
       buildings
     end
 
@@ -555,7 +553,7 @@ module Bot
       end
     end
 
-    def free_gift(options={}) 
+    def free_gift(options={})
       logger.info " > Free gift"
 
       if has_selector?(".toggle-general-button--active-gift > .icon-active-gift")
