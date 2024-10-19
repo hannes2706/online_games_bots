@@ -1,9 +1,8 @@
-<a href="https://paypal.me/miry">
-  <img align="right" alt="Donate with PayPal" style="float:right" width="200" src="https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png">
-</a>
+---
 
-[![patrons](http://img.shields.io/liberapay/goal/miry.svg?logo=liberapay)](https://liberapay.com/miry/)
-[![Gitter](https://badges.gitter.im/Lords-and-Knights-Bot/community.svg)](https://gitter.im/Lords-and-Knights-Bot/community)
+Updated script to work with ruby 3
+
+---
 
 # Online Games Bot Engine
 
@@ -310,8 +309,3 @@ Check `config/servers.yml.example` for more options and strategies.
 ## Logging
 
 To increase log level, you need to specify the `LOG_LEVEL` env variable. Possible values: debug, info, warn, error
-
-
-# Alternatives
-
-- [LoK: War Bot](https://lordsandknightsbot.com/)
